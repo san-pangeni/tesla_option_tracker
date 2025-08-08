@@ -66,7 +66,7 @@ export default function MarketNews() {
     return impactMatch && categoryMatch
   }) || []
 
-  const categories = [...new Set(data?.news.map(item => item.category) || [])]
+  const categories = Array.from(new Set(data?.news.map(item => item.category) || []))
 
   if (loading && !data) {
     return (

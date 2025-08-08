@@ -1,0 +1,60 @@
+{
+  "name": "TSLA Options Tracker",
+  "short_name": "TSLA Options",
+  "description": "Real-time TSLA credit spread recommendations and market analysis",
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["finance", "business"],
+  "shortcuts": [
+    {
+      "name": "View Options",
+      "short_name": "Options",
+      "description": "View TSLA credit spread recommendations",
+      "url": "/?view=options",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Price Alerts",
+      "short_name": "Alerts",
+      "description": "Manage price alerts",
+      "url": "/?view=alerts",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "edge_side_panel": {},
+  "file_handlers": [],
+  "protocol_handlers": [],
+  "prefer_related_applications": false
+}

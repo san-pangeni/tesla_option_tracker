@@ -34,7 +34,8 @@ class SimpleCache {
   // Clean up expired entries
   cleanup(): void {
     const now = Date.now()
-    for (const [key, item] of this.cache.entries()) {
+    const entries = Array.from(this.cache.entries())
+    for (const [key, item] of entries) {
       if (now - item.timestamp > item.ttl) {
         this.cache.delete(key)
       }
@@ -45,9 +46,14 @@ class SimpleCache {
 // Global cache instance
 export const apiCache = new SimpleCache()
 
-// Cleanup expired entries every 5 minutes
+// Cleanup expired entries every 5 minutes (server-side only)
 if (typeof window === 'undefined') {
-  setInterval(() => {
-    apiCache.cleanup()
-  }, 5 * 60 * 1000)
+  try {
+    setInterval(() => {
+      apiCache.cleanup()
+    }, 5 * 60 * 1000)
+  } catch (error) {
+    // Handle potential SSR issues silently
+    console.log('Cache cleanup interval setup failed:', error)
+  }
 }

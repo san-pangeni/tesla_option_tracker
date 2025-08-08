@@ -1,8 +1,15 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import OptionsRecommendations from '@/components/OptionsRecommendations'
-import MarketNews from '@/components/MarketNews'
+import dynamic from 'next/dynamic'
+
+// Dynamic imports to prevent SSR issues
+const OptionsRecommendations = dynamic(() => import('@/components/OptionsRecommendations'), { ssr: false })
+const MarketNews = dynamic(() => import('@/components/MarketNews'), { ssr: false })
+const EconomicCalendar = dynamic(() => import('@/components/EconomicCalendar'), { ssr: false })
+const PriceAlerts = dynamic(() => import('@/components/PriceAlerts'), { ssr: false })
+const PerformanceTracker = dynamic(() => import('@/components/PerformanceTracker'), { ssr: false })
+const ServiceWorkerRegistration = dynamic(() => import('@/components/ServiceWorkerRegistration'), { ssr: false })
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { TrendingUp, AlertTriangle, Info, Zap, Target, DollarSign } from 'lucide-react'
@@ -32,7 +39,9 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <>
+      <ServiceWorkerRegistration />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
@@ -146,15 +155,18 @@ export default function Dashboard() {
         </Card>
 
         {/* Main Dashboard Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
           {/* Options Recommendations */}
-          <div className="space-y-6">
+          <div className="lg:col-span-2 space-y-4 md:space-y-6">
             <OptionsRecommendations />
+            <PerformanceTracker />
           </div>
 
-          {/* Market News */}
-          <div className="space-y-6">
+          {/* Sidebar - News, Calendar, and Alerts */}
+          <div className="space-y-4 md:space-y-6 lg:col-span-1">
+            <PriceAlerts />
             <MarketNews />
+            <EconomicCalendar />
           </div>
         </div>
 
@@ -171,5 +183,6 @@ export default function Dashboard() {
         </footer>
       </main>
     </div>
+    </>
   )
 }

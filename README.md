@@ -1,168 +1,247 @@
-# TSLA Options Credit Spread Tracker
+# TSLA Options Tracker 📈
 
-A high-performance real-time web application that provides TSLA 7-DTE credit spread recommendations and market-moving news updates. Built with Next.js 14, TypeScript, and TailwindCSS for optimal performance and user experience.
+A high-performance real-time web application for tracking Tesla (TSLA) credit spread opportunities and market-moving events. Built with Next.js 14, TypeScript, and Tailwind CSS.
 
-## 🚀 Features
+## ✨ Features
 
-### Options Trading
-- **Credit Spread Recommendations**: Real-time analysis of optimal 7-DTE call and put credit spreads
-- **Risk/Reward Analysis**: Detailed calculations including max profit, max loss, breakeven points
-- **Probability Analysis**: Estimated probability of profit for each recommendation
-- **Live TSLA Price**: Real-time stock price updates
+### 🎯 Credit Spread Recommendations
+- **7-DTE Focus**: Optimized for 7-day to expiration options for maximum time decay
+- **Bull Put & Bear Call Spreads**: Both strategies with risk/reward analysis
+- **Real-time Calculations**: Advanced probability models and breakeven analysis
+- **Smart Filtering**: Only shows spreads with favorable risk/reward ratios
 
-### Market Intelligence
-- **Market-Moving News**: Real-time headlines for Fed meetings, CPI data, earnings, and major announcements
-- **Event Categorization**: Automatic classification by impact level (High/Medium/Low)
-- **Source Filtering**: Filter news by category and impact level
-- **Real-time Updates**: Automatic refresh every 30-60 seconds
+### 📊 Real-time Data
+- **Live Price Updates**: WebSocket-like polling for current TSLA price
+- **Options Chain Data**: Real-time bid/ask spreads and implied volatility
+- **Market Hours Detection**: Smart scheduling based on market sessions
 
-### Performance Features
-- **High-Performance UI**: Optimized with Next.js 14 App Router and React Server Components
-- **Real-time Updates**: Live data refreshing without full page reloads
-- **Responsive Design**: Beautiful UI that works on desktop, tablet, and mobile
-- **Error Handling**: Graceful fallbacks and error recovery
+### 📰 Market Intelligence
+- **Economic Calendar**: Fed meetings, CPI releases, earnings dates
+- **Market News**: Curated high-impact news from multiple sources
+- **Event Impact Scoring**: High/Medium/Low impact categorization
 
-## 🛠 Technology Stack
+### 🔔 Price Alerts
+- **Custom Alerts**: Set price targets above or below current levels
+- **Browser Notifications**: Desktop notifications even when tab is inactive
+- **Smart Persistence**: Alerts survive browser restarts
 
-- **Frontend**: Next.js 14, React 18, TypeScript
-- **Styling**: TailwindCSS with custom design system
-- **Icons**: Lucide React
-- **Data Fetching**: SWR for client-side data fetching
-- **APIs**: Yahoo Finance (free), Alpha Vantage (free), NewsAPI (free)
+### 📈 Performance Tracking
+- **Trade Journal**: Track your credit spread trades
+- **Performance Metrics**: Win rate, profit factor, average win/loss
+- **P&L Tracking**: Real-time profit and loss calculations
 
-## 📊 Data Sources
-
-### Options Data
-- **Yahoo Finance API**: Primary source for TSLA options chains (completely free)
-- **Alpha Vantage**: Backup for stock prices and additional market data (free tier: 500 calls/day)
-
-### News Data
-- **NewsAPI**: Primary news source (free tier: 1000 requests/month)
-- **Alpha Vantage News**: Backup news source for market sentiment
+### 📱 PWA Support
+- **Installable**: Add to home screen on mobile and desktop
+- **Offline Support**: Service worker caching for core functionality
+- **Responsive Design**: Optimized for all screen sizes
 
 ## 🚀 Quick Start
 
-### 1. Installation
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd tsla-options-tracker
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp env.example .env.local
+   ```
+   
+   Edit `.env.local` with your API keys (all optional - app works with demo data):
+   ```bash
+   # Free API Keys (optional but recommended)
+   ALPHA_VANTAGE_API_KEY=your_key_here
+   NEWS_API_KEY=your_key_here
+   POLYGON_API_KEY=your_key_here
+   FMP_API_KEY=your_key_here
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🔧 API Keys Setup (Optional)
+
+The application works with fallback data, but for the best experience, get these free API keys:
+
+### Alpha Vantage (Recommended)
+- **Free Tier**: 5 calls/minute, 500 calls/day
+- **Sign up**: [alphavantage.co](https://www.alphavantage.co/support/#api-key)
+- **Used for**: Stock prices, company fundamentals
+
+### NewsAPI
+- **Free Tier**: 1000 requests/month
+- **Sign up**: [newsapi.org](https://newsapi.org/register)
+- **Used for**: Market news and events
+
+### Polygon.io
+- **Free Tier**: 5 calls/minute
+- **Sign up**: [polygon.io](https://polygon.io/)
+- **Used for**: Options data backup
+
+### Financial Modeling Prep
+- **Free Tier**: 250 requests/day
+- **Sign up**: [financialmodelingprep.com](https://financialmodelingprep.com/developer/docs)
+- **Used for**: Economic calendar, earnings dates
+
+## 📱 Mobile & PWA
+
+### Install as App
+1. **Mobile**: Tap "Add to Home Screen" when prompted
+2. **Desktop**: Click the install button in the address bar
+3. **Chrome**: Menu → Install TSLA Options Tracker
+
+### Features
+- ✅ Works offline with cached data
+- ✅ Push notifications for price alerts
+- ✅ Native app-like experience
+- ✅ Auto-updates when online
+
+## 🎛️ Usage Guide
+
+### Setting Up Price Alerts
+1. Navigate to the **Price Alerts** section
+2. Click **"Add Alert"**
+3. Set your target price and condition (above/below)
+4. Enable browser notifications when prompted
+5. Alerts will trigger even when the tab is inactive
+
+### Tracking Performance
+1. Go to **Performance Tracker**
+2. Click **"Add Trade"** when you enter a credit spread
+3. Input your strike prices, expiration, and credit received
+4. Close trades manually when you exit the position
+5. View your statistics and performance metrics
+
+### Using Recommendations
+1. Check **Options Recommendations** for current opportunities
+2. Filter by spread type (Bull Put or Bear Call)
+3. Review probability of profit and risk/reward ratios
+4. Consider market events from the **Economic Calendar**
+
+## 🛠️ Development
+
+### Tech Stack
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Custom shadcn/ui components
+- **Icons**: Lucide React
+- **State**: React hooks with localStorage persistence
+- **APIs**: Multiple free financial data sources
+
+### Project Structure
+```
+├── app/                    # Next.js app router
+│   ├── api/               # API routes
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Main dashboard
+├── components/            # React components
+│   ├── ui/               # Base UI components
+│   ├── EconomicCalendar.tsx
+│   ├── MarketNews.tsx
+│   ├── OptionsRecommendations.tsx
+│   ├── PerformanceTracker.tsx
+│   └── PriceAlerts.tsx
+├── lib/                  # Utilities
+│   ├── cache.ts          # API caching
+│   ├── utils.ts          # Helper functions
+│   └── websocket.ts      # Real-time data
+└── public/               # Static assets
+    ├── manifest.json     # PWA manifest
+    └── sw.js            # Service worker
+```
+
+### Available Scripts
 ```bash
-# Clone or download the project files
-cd tsla-options-tracker
-
-# Install dependencies
-npm install
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
 ```
 
-### 2. Environment Setup (Optional)
+## 🚀 Deployment
 
-The app works with demo data out of the box. For live data, copy `env.example` to `.env.local` and add your API keys:
+### Vercel (Recommended)
+1. **Connect Repository**: Import your Git repository
+2. **Environment Variables**: Add your API keys in Vercel dashboard
+3. **Deploy**: Automatic deployments on every push
 
-```bash
-cp env.example .env.local
-```
+### Other Platforms
+- **Netlify**: Works with static export
+- **Railway**: Direct deployment support
+- **DigitalOcean**: App Platform compatible
 
-Edit `.env.local`:
-```env
-# Optional - app works without these
-ALPHA_VANTAGE_API_KEY=your_key_here
-NEWS_API_KEY=your_key_here
-```
+### Build Optimization
+- ✅ Automatic code splitting
+- ✅ Image optimization
+- ✅ Service worker caching
+- ✅ Gzip compression
+- ✅ Bundle analysis available
 
-**Free API Keys:**
-- Alpha Vantage: [Get free key](https://www.alphavantage.co/support/#api-key)
-- NewsAPI: [Get free key](https://newsapi.org/register)
+## 📊 Performance Features
 
-### 3. Run the Application
+### Caching Strategy
+- **API Responses**: 30-second cache for options data
+- **News Data**: 5-minute cache for market news
+- **Economic Calendar**: 4-hour cache for event data
+- **Service Worker**: Offline fallback caching
 
-```bash
-# Development server
-npm run dev
+### Real-time Updates
+- **Price Data**: Every 5 seconds during market hours
+- **Options Data**: Every 30 seconds
+- **News**: Every 2 minutes
+- **Automatic Retry**: With exponential backoff
 
-# Production build
-npm run build
-npm start
-```
+## ⚠️ Risk Disclaimer
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+**This application is for educational purposes only.**
 
-## 📈 Trading Strategy
-
-### Credit Spreads Overview
-This application focuses on **selling credit spreads** - a defined-risk options strategy:
-
-#### Bull Put Spreads
-- **When to use**: Neutral to bullish outlook on TSLA
-- **Profit condition**: TSLA stays above the short put strike
-- **Risk**: Limited to spread width minus credit received
-
-#### Bear Call Spreads  
-- **When to use**: Neutral to bearish outlook on TSLA
-- **Profit condition**: TSLA stays below the short call strike
-- **Risk**: Limited to spread width minus credit received
-
-### 7-DTE Focus
-- **Time Decay**: Options lose value quickly near expiration
-- **Premium Collection**: Higher time decay rates = more premium collection
-- **Risk Management**: Shorter timeframe = more predictable outcomes
-
-## 🎯 Key Metrics
-
-The application calculates and displays:
-
-- **Credit Received**: Premium collected from selling the spread
-- **Max Profit**: Maximum possible gain (= credit received)
-- **Max Loss**: Maximum possible loss (spread width - credit)
-- **Breakeven Point**: Stock price where P&L = $0
-- **Probability of Profit**: Estimated based on current price vs. strikes
-- **Risk/Reward Ratio**: Profit potential vs. risk exposure
-
-## 📰 Market Events Monitoring
-
-### High Impact Events
-- Federal Reserve meetings and announcements
-- CPI (inflation) data releases
-- TSLA earnings reports
-- Major product announcements
-
-### Impact Classification
-- **High**: Events likely to cause >5% price moves
-- **Medium**: Events likely to cause 2-5% price moves  
-- **Low**: General market news with <2% impact
-
-## ⚠️ Risk Warnings
-
-- **Options trading involves substantial risk** and is not suitable for all investors
-- **Past performance does not guarantee future results**
-- **This application is for educational purposes only** - not financial advice
-- **Always manage risk appropriately** - never risk more than you can afford to lose
-- **Consider consulting a financial advisor** before trading options
-
-## 🔧 Technical Details
-
-### Performance Optimizations
-- Server-side rendering with Next.js 14
-- Automatic code splitting and optimization
-- Efficient API caching and error handling
-- Responsive images and lazy loading
-
-### API Rate Limits
-- Yahoo Finance: No rate limits (free)
-- Alpha Vantage: 5 calls/minute, 500/day (free tier)
-- NewsAPI: 1000 requests/month (free tier)
-
-### Browser Support
-- Chrome 88+
-- Firefox 85+
-- Safari 14+
-- Edge 88+
-
-## 📝 License
-
-This project is for educational purposes. Use at your own risk.
+- ❌ Not financial advice
+- ❌ No guarantee of accuracy
+- ❌ Past performance ≠ future results
+- ✅ Always do your own research
+- ✅ Never risk more than you can afford to lose
+- ✅ Options trading involves substantial risk
 
 ## 🤝 Contributing
 
-This is an educational project. Feel free to fork and modify for your own learning!
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Yahoo Finance** for free options data
+- **Alpha Vantage** for stock prices and fundamentals  
+- **NewsAPI** for market news
+- **Lucide** for beautiful icons
+- **Tailwind CSS** for styling system
+- **Next.js** team for the amazing framework
 
 ---
 
-**Disclaimer**: This application is for educational and informational purposes only. It does not constitute financial advice. Options trading involves substantial risk and is not suitable for all investors. Always do your own research and consider consulting with a qualified financial advisor before making investment decisions.
+**Built with ❤️ for the options trading community**
